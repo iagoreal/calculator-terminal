@@ -66,10 +66,19 @@ function askNumber(orderNumber: string): number | null{
     return number;
 }
 
-function askContinue(): boolean {
+function askContinue(): boolean | any{
+ 
     const response = readlineSync.question('Do you want to perform another operation? (y/n): ').toLowerCase();
-    return response === 'y';
+    if (response === "n") {
+        return false;
+    } else if (response !== "y") {
+        return askContinue();
+    }
+    return response === "y";
+             
+        
 }
+
 
 try {
     let continueLoop = true;

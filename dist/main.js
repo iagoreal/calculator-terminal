@@ -61,7 +61,13 @@ function askNumber(orderNumber) {
 }
 function askContinue() {
     const response = readline_sync_1.default.question('Do you want to perform another operation? (y/n): ').toLowerCase();
-    return response === 'y';
+    if (response === "n") {
+        return false;
+    }
+    else if (response !== "y") {
+        return askContinue();
+    }
+    return response === "y";
 }
 try {
     let continueLoop = true;
